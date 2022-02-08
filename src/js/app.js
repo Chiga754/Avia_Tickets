@@ -1,8 +1,17 @@
 import '../css/style.css';
 import './plugins';
 import locations from "./store/locations";
-locations.init().then(res => {
-    console.log(res);
-    console.log(locations);
-    console.log(locations.getCitiesByCountryCode('PE'));
+import formUI from './views/form';
+
+document.addEventListener('DOMContentLoaded', () => {
+    initApp();
+
+    //Events
+
+    //Handlers
+    async function initApp() {
+        await locations.init();
+        console.log(locations);
+        formUI.setAutocompleteData(locations.shortCitiesList);
+    }
 });
