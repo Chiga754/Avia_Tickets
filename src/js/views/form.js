@@ -13,7 +13,23 @@ class FormUI {
         this.returnDatePiker = datepickerInstance(this.return);
     }
     get form() {
-        this.$form;
+        return this._form;
+    }
+
+    get originValue() {
+        return this.origin.value;
+    }
+
+    get destinationValue() {
+        return this.destination.value;
+    }
+
+    get departValue() {
+        return this.departDatePiker.toString();
+    }
+
+    get returnValue() {
+        return this.returnDatePiker.toString();
     }
 
     setAutocompleteData(data) {
