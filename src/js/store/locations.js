@@ -53,7 +53,7 @@ class Locations {
 
     async fetchTickets(params){
         const response = await this.api.prices(params);
-        console.log(response);
+        console.log(response.data);
     }
 }
 
