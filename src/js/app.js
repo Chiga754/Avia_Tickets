@@ -4,7 +4,7 @@ import locations from "./store/locations";
 import formUI from './views/form';
 import currencyUI from './views/currency';
 import ticketsUI from './views/tickets'
-import favouritesTicketsStore from './store/favouritesTicketsStore';
+import favoritesTicketsStore from './store/favoritesTicketsStore';
 
 document.addEventListener('DOMContentLoaded', () => {
     initApp();
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     container.addEventListener('click', (e) => {
         if(e.target.classList.contains('add-favorite')){
             const parent = e.target.closest('.card');
-            favouritesTicketsStore.setTicketsToLocalStorage(parent);
+            favoritesTicketsStore.setTicketsToLocalStorage(parent);
         }
     });
 

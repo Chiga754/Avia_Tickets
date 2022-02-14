@@ -1,4 +1,4 @@
-class FavouritesTicketsStore {
+class FavoritesTicketsStore {
     constructor() {
         this.counterTickets = 0;
     }
@@ -28,5 +28,5 @@ class FavouritesTicketsStore {
 
 }
 
-const favouritesTicketsStore = new FavouritesTicketsStore();
-export default favouritesTicketsStore;
+const favoritesTicketsStore = new FavoritesTicketsStore();
+export default favoritesTicketsStore;
