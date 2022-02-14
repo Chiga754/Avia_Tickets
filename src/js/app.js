@@ -1,15 +1,18 @@
 import '../css/style.css';
 import './plugins';
 import locations from "./store/locations";
+import favoritesTicketsStore from './store/favoritesTicketsStore';
 import formUI from './views/form';
 import currencyUI from './views/currency';
-import ticketsUI from './views/tickets'
-import favoritesTicketsStore from './store/favoritesTicketsStore';
+import ticketsUI from './views/tickets';
+import favoritesTicketsUI from './views/favoritesTickets' ;
 
 document.addEventListener('DOMContentLoaded', () => {
     initApp();
     const form = formUI.form;
     const container = ticketsUI.container;
+    //Получение и рендер избранных билетов при загрузке страницы
+    favoritesTicketsUI.renderFovoritesTickets(favoritesTicketsStore.getTicketsFromStorage());
     //Events
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -19,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if(e.target.classList.contains('add-favorite')){
             const parent = e.target.closest('.card');
             favoritesTicketsStore.setTicketsToLocalStorage(parent);
+            //Получение и рендер избранных билетов при добавлении нового билета
+            favoritesTicketsUI.renderFovoritesTickets(favoritesTicketsStore.getTicketsFromStorage());
         }
     });
 

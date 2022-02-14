@@ -107,6 +107,7 @@
   }
   
   .favorites .favorite-item-info {
+    align-items: center;
     flex-grow: 1;
     padding: 10px;
     line-height: 1;
