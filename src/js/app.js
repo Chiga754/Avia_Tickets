@@ -4,19 +4,27 @@ import locations from "./store/locations";
 import formUI from './views/form';
 import currencyUI from './views/currency';
 import ticketsUI from './views/tickets'
+import favouritesTicketsStore from './store/favouritesTicketsStore';
 
 document.addEventListener('DOMContentLoaded', () => {
     initApp();
     const form = formUI.form;
+    const container = ticketsUI.container;
     //Events
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         onFormSubmit();
     })
+    container.addEventListener('click', (e) => {
+        if(e.target.classList.contains('add-favorite')){
+            const parent = e.target.closest('.card');
+            favouritesTicketsStore.setTicketsToLocalStorage(parent);
+        }
+    });
+
     //Handlers
     async function initApp() {
         await locations.init();
-        console.log(locations);
         formUI.setAutocompleteData(locations.shortCitiesList);
     }
 
@@ -27,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const depart_date = formUI.departValue;
         const return_date = formUI.returnValue;
         const currency = currencyUI.currencyValue;
-        console.log(origin, destination, depart_date, return_date);
         await locations.fetchTickets({
             origin,
             destination,
