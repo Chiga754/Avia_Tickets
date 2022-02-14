@@ -20,6 +20,9 @@ M.Datepicker.init(datepicker, {
     format: 'yyyy-mm',
 });
 
+const dropdown = document.querySelector('.dropdown-trigger');
+M.Dropdown.init(dropdown);
+
 export function getSelectInstance(element) {
     return M.FormSelect.getInstance(element);
 }
