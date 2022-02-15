@@ -1,10 +1,10 @@
 class FavoritesTicketsStore {
     constructor() {
-        this.counterTickets = 0;
+
     }
 
     setTicketsToLocalStorage(parent) {
-        localStorage.setItem(`ticket ${this.counterTickets++}`, JSON.stringify({
+        localStorage.setItem(`ticket ${Math.random()}`, JSON.stringify({
             airline_logo : parent.querySelector('.ticket-airline-img').src,
             airline_name : parent.querySelector('.ticket-airline-name').textContent,
             origin_name : parent.querySelector('.ticket-city-origin').textContent,
@@ -20,7 +20,9 @@ class FavoritesTicketsStore {
         const arrTickets = [];
         for(let i = 0; i < localStorage.length; i++){
             if(localStorage.key(i).startsWith('ticket')){
-                arrTickets.push(JSON.parse(localStorage.getItem(`ticket ${i}`)));
+                const ticket = JSON.parse(localStorage.getItem(localStorage.key(i)))
+                arrTickets.push(ticket)
+                // arrTickets.push(JSON.parse(localStorage.getItem(`ticket ${i}`)));
             }
         }
         return arrTickets;
