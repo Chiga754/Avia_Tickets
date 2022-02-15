@@ -1,18 +1,22 @@
 class FovoritesTicketsUI {
     constructor(){
-        this.container = document.querySelector('#dropdown1');
+        this._container = document.querySelector('#dropdown1');
+    }
+
+    get container() {
+      return this._container;
     }
 
     renderFovoritesTickets(arr) {
-      this.container.innerHTML = '';
+      this._container.innerHTML = '';
         arr.forEach(ticket => {
-            this.container.insertAdjacentHTML("afterbegin",this.ticketTemplate(ticket));
+            this._container.insertAdjacentHTML("afterbegin",this.ticketTemplate(ticket));
         });
     }
 
     ticketTemplate(ticket){
         return `
-        <div class="favorite-item  d-flex align-items-start">
+        <div class="favorite-item  d-flex align-items-start" data-id = "${ticket._id}">
         <img src="${ticket.airline_logo}" class="favorite-item-airline-img"/>
         <div class="favorite-item-info d-flex flex-column">
           <div class="favorite-item-destination d-flex align-items-center">

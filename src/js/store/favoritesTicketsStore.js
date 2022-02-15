@@ -4,7 +4,9 @@ class FavoritesTicketsStore {
     }
 
     setTicketsToLocalStorage(parent) {
-        localStorage.setItem(`ticket ${Math.random()}`, JSON.stringify({
+        const key = `ticket ${Math.random()}`
+        localStorage.setItem(key, JSON.stringify({
+            _id : key,
             airline_logo : parent.querySelector('.ticket-airline-img').src,
             airline_name : parent.querySelector('.ticket-airline-name').textContent,
             origin_name : parent.querySelector('.ticket-city-origin').textContent,
@@ -22,12 +24,14 @@ class FavoritesTicketsStore {
             if(localStorage.key(i).startsWith('ticket')){
                 const ticket = JSON.parse(localStorage.getItem(localStorage.key(i)))
                 arrTickets.push(ticket)
-                // arrTickets.push(JSON.parse(localStorage.getItem(`ticket ${i}`)));
             }
         }
         return arrTickets;
     }
 
+    removeTicketFromStorage(ticketId) {
+        localStorage.removeItem(ticketId);
+    }
 }
 
 const favoritesTicketsStore = new FavoritesTicketsStore();

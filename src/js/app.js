@@ -9,8 +9,12 @@ import favoritesTicketsUI from './views/favoritesTickets' ;
 
 document.addEventListener('DOMContentLoaded', () => {
     initApp();
+
+    //Elements
     const form = formUI.form;
     const container = ticketsUI.container;
+    const favoritesContainer = favoritesTicketsUI.container;
+
     //Получение и рендер избранных билетов при загрузке страницы
     favoritesTicketsUI.renderFovoritesTickets(favoritesTicketsStore.getTicketsFromStorage());
     //Events
@@ -25,6 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
             //Получение и рендер избранных билетов при добавлении нового билета
             favoritesTicketsUI.renderFovoritesTickets(favoritesTicketsStore.getTicketsFromStorage());
         }
+    });
+
+    favoritesContainer.addEventListener('click', (event) => {
+        deleteTicketHandler(event);
     });
 
     //Handlers
@@ -49,4 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         ticketsUI.renderTickets(locations.lastSearch);
     }
+
+    function deleteTicketHandler ({target}) {
+        if(target.classList.contains('delete-favorite')){
+            const parent = target.closest('.favorite-item');
+            const parentId = parent.dataset.id;
+            parent.remove();
+            favoritesTicketsStore.removeTicketFromStorage(parentId);
+        }
+    }
+
 });
